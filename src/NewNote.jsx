@@ -21,9 +21,9 @@ function NewNote(props){
       setIsOpen(true);
     }
 
-    const [note, setNote] = useState('')   //{
-      //text: '',
-    //}
+    const [note, setNote] = useState({
+      text: '',
+    });
 
     const InputEvent = (event) =>{
 
@@ -42,6 +42,12 @@ function NewNote(props){
 
     const addEvent = () =>{
       props.passNote(note);
+
+      setNote({
+        text: '',
+      })
+
+      closeModal();
     }
    
     function afterOpenModal() {
@@ -73,8 +79,8 @@ function NewNote(props){
             {/* <Input value={input} onChange={event => setInput(event.target.value)}/> */}
                 <textarea 
                   name="text"
-                  value={note}
-                  // value={note.text}
+                  //value={note}
+                  value={note.text}
                   onChange={InputEvent}
                   id="tarea" 
                   placeholder="write note..." 

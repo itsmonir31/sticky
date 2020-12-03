@@ -19,7 +19,7 @@ function App(){
   const addNote = (note) =>{
     
     setAddItem((prevData)=>{
-      return [...prevData, ]
+      return [...prevData, note]
     })
 
     // alert({note});
@@ -27,21 +27,30 @@ function App(){
     console.log(note);
   }
 
+  const onDelete = (id) =>{
+    setAddItem((oldData)=>
+      oldData.filter((currData, indexx)=>{
+        return indexx !== id;
+      })
+    )
+  };
+
   return(
-    <div>
+    <div className='boss'>
       <NewNote passNote={addNote}/>
       {/* <Note/> */}
 
+      <div className="mk">
       {addItem.map((val, index)=>{
         return <Note
           key={index}
-          // id={index}
+          id={index}
           text={val.text}
-
-          
+          deleteItem = {onDelete}
         />
       })
-}
+      }
+      </div>
     </div>
   );
 }
